@@ -3,6 +3,7 @@ import cors from 'cors';
 import multer from 'multer';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import dotenv from 'dotenv';
+import serverless from 'serverless-http';
 
 dotenv.config();
 
@@ -18,6 +19,10 @@ const s3Client = new S3Client({
     accessKeyId: process.env.CLOUDFLARE_ACCESS_KEY_ID,
     secretAccessKey: process.env.CLOUDFLARE_SECRET_ACCESS_KEY,
   },
+});
+
+app.get('/', (req, res) => {
+  res.send('Objetiva representações - API!');
 });
 
 app.post('/upload', upload.single('file'), async (req, res) => {
@@ -53,4 +58,4 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 //   console.log(`Server running on port ${PORT}`);
 // });
 
-export default app;
+export const handler = serverless(app);
