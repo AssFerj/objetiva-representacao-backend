@@ -58,4 +58,6 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 //   console.log(`Server running on port ${PORT}`);
 // });
 
-export const handler = serverless(app);
+const handler = serverless(app);
+
+export { handler };
