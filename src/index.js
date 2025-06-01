@@ -60,4 +60,4 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 
 const handler = serverless(app);
 
-export { handler };
+export default { handler };
